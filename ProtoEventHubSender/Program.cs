@@ -1,12 +1,14 @@
 ﻿using Google.Protobuf;
 using ProtoEventHubSender;
 
-for (var i = 0; i < 10; i++)
+var eventDataBuilder = new PersistSubmittedTransactionBuilder();
+var eventPublisher = new EventPublisher();
+
+for (var i = 0; i < 15; i++)
 {
-    var eventPublisher = new EventPublisher();
-    var eventData = new PersistSubmittedTransactionBuilder().Build();
+    var eventData = eventDataBuilder.Build();
     
-    await eventPublisher.SendMessageAsync(eventData.ToByteArray());
+    await eventPublisher.SendEventAsync(eventData.ToByteArray());
     
     Console.WriteLine($"Message {eventData.OrchestrationInstanceId} sent successfully");
 }

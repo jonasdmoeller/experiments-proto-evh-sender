@@ -19,7 +19,7 @@ public class EventPublisher : IAsyncDisposable
             new DefaultAzureCredential());
     }
 
-    public async Task SendMessageAsync(byte[] bytes)
+    public async Task SendEventAsync(byte[] bytes)
     {
         try
         {
